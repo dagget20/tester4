@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tester4</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<nav>
+	
+		<img src="/images/gymoline_logo.png">
+		
+		<div id="login_nav">
+	
+			<% if user_signed_in? %>
+				Logged in as: <strong><%=  current_user.email %></strong>
+				<%= link_to "Edit Profile", edit_user_registration_path %>
+				<%= link_to "Log out", destroy_user_session_path, method: :delete, class: "logout" %>
+			<% else %>
+				<%= link_to "Sign up", new_user_registration_path %>
+				<%= link_to image_tag("login-button.png"), new_user_session_path %>
+			<% end %>
+		
+		</div>
+	</nav>
+
+	<p class="notice"><%= notice %></p>
+
+	<%= yield %>
+
+</body>
+</html>
