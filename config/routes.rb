@@ -1,9 +1,15 @@
 Tester4::Application.routes.draw do
   
   devise_for :users
-  root 'posts#index'
   
+  authenticated do
+    root :to => 'pages#panel', as: :authenticated_user
+  end
+  root 'pages#index'
+  
+  resources :pages
   resources :posts
+  resources :videos
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

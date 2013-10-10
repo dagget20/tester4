@@ -1,0 +1,24 @@
+<h2>Esta es la lista de videos </h2>
+
+<table>
+	<tr>
+		<th>Titulo</th>
+		<th>Duracion</th>
+		<th>Calorias</th>
+		<th>Url</th>
+	</tr>
+<% @videos.each do |video| %>
+	
+	<tr>
+		<td><%= video.title %></td>
+		<td><%= video.length %></td>
+		<td><%= video.calories %></td>
+		<td><%= video.url.html_safe %></td>
+		<td><%= link_to "Editar", edit_video_path(video) %></td>
+		<td><%= link_to "Borrar", video, method: :delete, data: {confirm: 'Estas seguro?'} %></td>
+	</tr>
+<% end %>
+</table>
+	<p><%= link_to "Nuevo video", new_video_path %></p>
+
+

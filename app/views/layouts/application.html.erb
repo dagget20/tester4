@@ -5,29 +5,31 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<nav>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a href="#" class="brand"> <img src="/images/gymoline_logo_nav.png"> </a>
+			<ul class="nav pull-right">
+				<li class="active"><a href="#">Nosotros</a></li>
+				<li><a href="#">Contactanos</a></li>
+				
+				<% if user_signed_in? %>
+					<li><%= link_to "Editar", edit_user_registration_path %></li>
+					<li><%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %></li>
+				<% else %>
+					<li><a href=<%=new_user_session_path %>><button class="btn" type="button">Ingresa</button></a></li>
+					<li><a href=<%=new_user_registration_path %>><button class="btn" type="button">Registrate</button></a></li>
+				<% end %>
+					
+			</ul>
+		</div>	
+	</div>	
 	
-		<img src="/images/gymoline_logo.png">
-		
-		<div id="login_nav">
-	
-			<% if user_signed_in? %>
-				Logged in as: <strong><%=  current_user.email %></strong>
-				<%= link_to "Edit Profile", edit_user_registration_path %>
-				<%= link_to "Log out", destroy_user_session_path, method: :delete, class: "logout" %>
-			<% else %>
-				<%= link_to "Sign up", new_user_registration_path %>
-				<%= link_to image_tag("login-button.png"), new_user_session_path %>
-			<% end %>
-		
-		</div>
-	</nav>
-
-	<p class="notice"><%= notice %></p>
-
-	<%= yield %>
+	<div class="container">	
+		<%= yield %>
+	</div>
 
 </body>
 </html>

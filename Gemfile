@@ -46,3 +46,7 @@ end
 
 gem 'devise'
 gem 'bcrypt-ruby'
+gem 'twitter-bootstrap-rails'
+gem 'less-rails'
+gem 'therubyracer'
+gem 'omniauth-twitter'
